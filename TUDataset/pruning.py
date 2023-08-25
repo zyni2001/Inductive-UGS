@@ -111,10 +111,10 @@ def masker_pruning_dataset(dataset, masker, args):
 
     data_list = []
     offset = 0
-    dataset = dataset.to(device)
+    # dataset = dataset.to(device)
     with torch.no_grad():
         for i, data in enumerate(dataset):
-            data_list.append(data)
+            data_list.append(data.to(device))
             
             if (i + 1) % args.batch_size == 0:
                 batch_data = Batch.from_data_list(data_list[offset:offset + args.batch_size]).to(device)
