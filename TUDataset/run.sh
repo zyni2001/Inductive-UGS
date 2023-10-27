@@ -1,4 +1,7 @@
-dataset=NCI1
+dataset=DD
+use_pre=false
+
+mkdir -p log
 
 #ICPG
 CUDA_VISIBLE_DEVICES=$1 \
@@ -8,7 +11,8 @@ python -u main_imp.py \
 --epochs 100 \
 --mask_lr 1e-2 \
 --pruning_percent 0.05 \
---pruning_percent_w 0.2
+--pruning_percent_w 0.2 \
+--folds 2 2>&1 | tee log/${dataset}_use_pre:${use_pre}_imp.log &
 
 # Random pruning
 # CUDA_VISIBLE_DEVICES=$1 python -u main_rp.py --dataset ${dataset} --random_type rprp --model GCN

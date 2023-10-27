@@ -1,0 +1,72 @@
+[92mExp Information:[00m
+[92m------------------------------------------------------------------------------------------------------------------------------------------------------[00m
+[93mDataset:[DD] | Save Dir:[debug] | Seed:[666][00m
+epochs.......................................................................100
+get_mask_epochs..............................................................100
+score_function........................................................concat_mlp
+mask_lr.....................................................................0.01
+mask_dim......................................................................64
+mask_type....................................................................GCN
+save_masker_ckpt...........................................................False
+pruning_percent.............................................................0.05
+pruning_percent_w............................................................0.2
+binary.....................................................................False
+dataset.......................................................................DD
+folds..........................................................................2
+seed.........................................................................666
+data_root...................................................................data
+save_dir...................................................................debug
+batch_size...................................................................128
+lr.........................................................................0.001
+lr_decay_factor..............................................................0.5
+lr_decay_step_size...........................................................500
+weight_decay...................................................................0
+epoch_select............................................................test_max
+n_layers_feat..................................................................1
+n_layers_conv..................................................................3
+n_layers_fc....................................................................2
+hidden.......................................................................128
+global_pool..................................................................sum
+skip_connection............................................................False
+res_branch............................................................BNConvReLU
+dropout........................................................................0
+edge_norm...................................................................True
+with_eval_mode..............................................................True
+semi_split....................................................................10
+pre_trans...................................................................True
+og_url......................................................................True
+
+[92m----------------------------------------------------------------------------------------------------[00m
+/home/yifan/anaconda3/envs/torch/lib/python3.11/site-packages/torch_geometric/data/in_memory_dataset.py:157: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+/home/yifan/anaconda3/envs/torch/lib/python3.11/site-packages/torch_geometric/deprecation.py:22: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+INFO: Weight Sparsity [0.0001%] 
+Traceback (most recent call last):
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/main_imp.py", line 151, in <module>
+    main()
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/main_imp.py", line 143, in main
+    run_all(create_n_filter_triples(datasets, 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/main_imp.py", line 117, in run_all
+    fold_things_list = train_get_mask(dataset_ori=dataset_ori,  
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/train_eval_imp.py", line 66, in train_get_mask
+    train_loss, train_acc, mask_distribution = train_model_and_masker(model, optimizer, train_loader_pru, device, args, masker=masker)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/train.py", line 62, in train_model_and_masker
+    out = model(data, data_mask)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/anaconda3/envs/torch/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/res_gcn.py", line 100, in forward
+    s = self.gnn1_pool(x, adj, mask)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/anaconda3/envs/torch/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yifan/conda/Inductive_Lottery_Ticket_Learning_Supplementary_Material-2/TUDataset/res_gcn.py", line 394, in forward
+    batch_size, num_nodes, in_channels = x.size()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)

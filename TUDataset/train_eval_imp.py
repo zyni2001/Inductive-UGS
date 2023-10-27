@@ -9,6 +9,7 @@ from utils import print_weights, k_fold
 import pruning
 import copy
 import pdb
+import pickle
 from train import eval_acc, eval_loss, train_model_and_masker, train, eval_acc_with_mask, eval_acc_with_pruned_dataset
 
 device = torch.device('cuda')
@@ -219,8 +220,8 @@ def eval_tickets(dataset_ori, model_func, masker_func, fold_things_list, imp_num
             train_dataset_pru = pruning.masker_pruning_dataset(train_dataset_ori, masker, args)
             test_dataset_pru = pruning.masker_pruning_dataset(test_dataset_ori, masker, args)
         else:
-            train_dataset_pru = fold_things_list[fold]['train_dataset_pru']
-            train_dataset_pru = pruning.masker_pruning_dataset(train_dataset_pru, masker, args)
+            train_dataset_pru = fold_things_list[fold]['train_dataset_pru'] # load the data
+            train_dataset_pru = pruning.masker_pruning_dataset(train_dataset_pru, masker, args) ## prune graph
             test_dataset_pru = fold_things_list[fold]['test_dataset_pru']
             test_dataset_pru = pruning.masker_pruning_dataset(test_dataset_pru, masker, args)
 
@@ -241,17 +242,31 @@ def eval_tickets(dataset_ori, model_func, masker_func, fold_things_list, imp_num
         spw = pruning.see_zero_rate(model)
         optimizer = Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
+        # set fold to 1 and do dataset DD
+        all_index = torch.arange(len(dataset_ori))
+        all_dataset_ori = dataset_ori[all_index]
+        all_dataset_pru = pruning.masker_pruning_dataset(all_dataset_ori, masker, args)
+        all_loader_pru = DataLoader(all_dataset_pru, 1, shuffle=False) # batch_size = 1
+        
         for epoch in range(1, args.epochs + 1):
             
-            train_loss, train_acc  = train(model, optimizer, train_loader_pru, device)
-            test_acc = eval_acc(model, test_loader_pru, device, args.with_eval_mode)
+            train_loss, train_acc  = train(model, optimizer, train_loader_pru, device)  
+            test_acc = eval_acc(model, test_loader_pru, device, args.with_eval_mode) ## return embedding of each epoch
             train_accs.append(train_acc)
             test_accs.append(test_acc)
 
-            if test_acc > best_test_acc:
+            if test_acc > best_test_acc:  ## save the best acc's embedding
                 best_test_acc = test_acc
                 best_epoch = epoch
-            
+
+                
+                if fold == 0:
+                    
+                    embed_list  = pruning.get_embedding(all_loader_pru, model, device)
+                    
+                    #### the definition of pruning.get_embedding ####
+
+
             print("(Test IMP:[{}] fold:[{}] spa:[{:.2f}%] spw:[{:.2f}%]) Epoch:[{}/{}] Loss:[{:.4f}] Train:[{:.2f}] Test:[{:.2f}] | Best Test:[{:.2f}] at Epoch:[{}]"
                     .format(imp_num,
                             fold,
@@ -266,6 +281,10 @@ def eval_tickets(dataset_ori, model_func, masker_func, fold_things_list, imp_num
                             best_epoch))
         
 
+
+        ## save the embedding for inference attack only when at specific imp_num: reach high sparsity level but without accuracy drop
+        if fold == 0:
+            pickle.dump(embed_list, open('impckpt/embed_list_{}.pkl'.format(imp_num), 'wb')) # attention to the path
         pruning.prRed("syd: IMP:[{}] fold:[{}] | Dataset:[{}] spa:[{:.2f}%] spw:[{:.2f}%] | Best Test:[{:.2f}] at epoch [{}]"
                 .format(imp_num,
                         fold,

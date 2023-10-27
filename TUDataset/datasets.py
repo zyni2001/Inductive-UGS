@@ -10,7 +10,7 @@ from image_dataset import ImageDataset
 from tu_dataset import TUDatasetExt
 import pdb
 
-def get_dataset(name, sparse=True, feat_str="deg+ak3+reall", root=None, pruning_percent=0):
+def get_dataset(args, name, sparse=True, feat_str="deg+ak3+reall", root=None, pruning_percent=0):
     if root is None or root == '':
         path = osp.join(osp.expanduser('~'), 'pyG_data', name)
     else:
@@ -53,13 +53,27 @@ def get_dataset(name, sparse=True, feat_str="deg+ak3+reall", root=None, pruning_
                 processed_file_prefix="data_%s" % feat_str)
         dataset = (train_dataset, test_dataset)
     else:
-        dataset = TUDatasetExt(
-            path, 
-            name, 
-            pre_transform=pre_transform,
-            use_node_attr=True, 
-            processed_filename="data_%s.pt" % feat_str, 
-            pruning_percent=pruning_percent)
+        if args.pre_trans==True:
+            
+            dataset = TUDatasetExt(
+                path, 
+                name, 
+                pre_transform=pre_transform,
+                # pre_transform=None,
+                use_node_attr=True, 
+                processed_filename="data_%s.pt" % feat_str, 
+                pruning_percent=pruning_percent)
+            
+        else:
+            dataset = TUDatasetExt(
+                path, 
+                name, 
+                # pre_transform=pre_transform,
+                pre_transform=None,
+                use_node_attr=True, 
+                processed_filename="data_%s.pt" % feat_str, 
+                pruning_percent=pruning_percent)
+        
 
         dataset.data.edge_attr = None
 

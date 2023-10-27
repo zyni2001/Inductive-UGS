@@ -16,6 +16,16 @@ def prGreen(skk): print("\033[92m{}\033[00m".format(skk))
 def prYellow(skk): print("\033[93m{}\033[00m".format(skk))
 
 
+def get_embedding(data, model, device):
+    embed_list = []
+    for it, data in enumerate(data):
+        data = data.to(device)
+        model(data)
+        embed = model.graph_embedding.cpu().detach().numpy()
+        embed_list.append(embed)
+    return embed_list    
+
+
 def see_zero_rate(model):
     sum_list = 0
     zero_sum = 0

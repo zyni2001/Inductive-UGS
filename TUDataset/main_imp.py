@@ -61,6 +61,8 @@ parser.add_argument('--dropout', type=float, default=0)
 parser.add_argument('--edge_norm', type=str2bool, default=True)
 parser.add_argument('--with_eval_mode', type=str2bool, default=True)
 parser.add_argument('--semi_split', type=int, default=10)
+parser.add_argument('--pre_trans', type=str2bool, default=True)
+parser.add_argument('--og_url',type=str2bool,default=True)
 args = parser.parse_args()
 
 
@@ -87,21 +89,22 @@ def create_n_filter_triples(datasets,
 
 
 def get_model_and_masker():
+    # save the resgcn and gcnmasker without accuracy drop
     def model_func(dataset):
-        return ResGCN(dataset, hidden=128)  
+        return ResGCN(dataset, hidden=192)  
 
     def masker_func(dataset):
         return GCNmasker(dataset, hidden=args.mask_dim, 
                                   score_function=args.score_function,
                                   mask_type=args.mask_type) 
-
+    
     return model_func, masker_func
 
 
 def run_all(dataset_feat_net_triples):
     
     dataset_name, feat_str, net = dataset_feat_net_triples[0]
-    dataset_ori = get_dataset(dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0)
+    dataset_ori = get_dataset(args, dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0)
     
     model_func, masker_func = get_model_and_masker()
     fold_things_list = None

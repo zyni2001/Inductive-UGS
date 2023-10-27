@@ -68,8 +68,8 @@ class ImageDataset(InMemoryDataset):
         self.testdata = data_test
 
     def process(self):
-        trainLoader = torch.utils.data.DataLoader(self.traindata)
-        testLoader = torch.utils.data.DataLoader(self.testdata)
+        trainLoader = torch.utils.loader.DataLoader(self.traindata)
+        testLoader = torch.utils.loader.DataLoader(self.testdata)
         if self.name == 'MNIST':
             num_row, num_col = 28, 28
         elif self.name == 'CIFAR10':
