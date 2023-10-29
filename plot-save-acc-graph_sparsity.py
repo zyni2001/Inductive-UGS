@@ -43,9 +43,9 @@ def plot_combined_graph(args, ax, show_ylabel=True):
                     
                     graph_sparcity = adj_list
                     
-                    print('final test acc list:')
+                    print('final test acc list \n')
                     print(final_test_acc_list)
-                    print('graph sparcity:')
+                    print('graph sparcity \n')
                     print(graph_sparcity)
                     
                     max_ = max(max_, max(final_test_acc_list))
@@ -109,7 +109,6 @@ def plot_single_figure(args):
 
     fig.savefig(output_pdf, bbox_inches='tight')
     fig.savefig(output_jpg, bbox_inches='tight', dpi=300)
-    print(f"Figure saved to {output_pdf} and {output_jpg}.")
 
 def initialize_args():
     # Define the input arguments

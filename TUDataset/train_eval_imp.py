@@ -216,7 +216,10 @@ def eval_tickets(dataset_ori, model_func, masker_func, fold_things_list, imp_num
         masker.load_state_dict(best_masker_state_dict)
         pruning.grad_model(masker, False) # fix masker
 
-        if imp_num == 1:
+        if imp_num == 0:
+            train_dataset_pru = copy.deepcopy(train_dataset_ori)
+            test_dataset_pru = copy.deepcopy(test_dataset_ori)
+        elif imp_num == 1:
             train_dataset_pru = pruning.masker_pruning_dataset(train_dataset_ori, masker, args)
             test_dataset_pru = pruning.masker_pruning_dataset(test_dataset_ori, masker, args)
         else:
@@ -329,7 +332,8 @@ def pure_eval(dataset_ori, model_func, fold_things_list, imp_num, args):
         test_dataset_ori = dataset_ori[test_idx]
         keys = str(fold + 1)
         rewind_weight = fold_things_list[keys]['rewind_weight']
-        model_mask_dict = fold_things_list[keys]['model_mask_dict']
+        if args.pruning_percent_w != 0:
+            model_mask_dict = fold_things_list[keys]['model_mask_dict']
         train_dataset_pru = fold_things_list[keys]['train_dataset_pru']
         test_dataset_pru = fold_things_list[keys]['test_dataset_pru']
             
@@ -344,7 +348,8 @@ def pure_eval(dataset_ori, model_func, fold_things_list, imp_num, args):
 
         model = model_func(dataset_ori).to(device)
         model.load_state_dict(rewind_weight)
-        pruning.pruning_model_by_mask(model, model_mask_dict)
+        if args.pruning_percent_w != 0:
+            pruning.pruning_model_by_mask(model, model_mask_dict)
         spw = pruning.see_zero_rate(model)
         optimizer = Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 

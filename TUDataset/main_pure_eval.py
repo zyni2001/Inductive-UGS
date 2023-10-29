@@ -9,7 +9,7 @@ import argparse
 from utils import logger
 from datasets import get_dataset
 from train_eval_imp import train_get_mask, eval_tickets, pure_eval
-from res_gcn import ResGCN, GCNmasker
+from res_gcn import ResGCN, GCNmasker, DiffPoolNet
 import random
 import copy
 import pdb
@@ -59,6 +59,7 @@ parser.add_argument('--dropout', type=float, default=0)
 parser.add_argument('--edge_norm', type=str2bool, default=True)
 parser.add_argument('--with_eval_mode', type=str2bool, default=True)
 parser.add_argument('--semi_split', type=int, default=10)
+parser.add_argument('--pre_trans', type=str2bool, default=True)
 args = parser.parse_args()
 
 
@@ -86,7 +87,8 @@ def create_n_filter_triples(datasets,
 
 def get_model_and_masker():
     def model_func(dataset):
-        return ResGCN(dataset, hidden=128)  
+        # return ResGCN(dataset, hidden=128)  
+        return DiffPoolNet(num_feats=dataset.num_features, num_classes=dataset.num_classes, max_nodes=500)
 
     def masker_func(dataset):
         return GCNmasker(dataset, hidden=args.mask_dim, score_function=args.score_function) 
@@ -97,7 +99,7 @@ def get_model_and_masker():
 def run_all(dataset_feat_net_triples):
     
     dataset_name, feat_str, net = dataset_feat_net_triples[0]
-    dataset_ori = get_dataset(dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0)
+    dataset_ori = get_dataset(args, dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0)
     model_func, masker_func = get_model_and_masker()
     fold_things_list = None
     # args.pruning_percent_w = 0.0

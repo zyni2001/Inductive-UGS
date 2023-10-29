@@ -17,7 +17,7 @@ python -u main_imp.py \
 2>&1 | tee log/${dataset}_DiffPool_imp.log &"
 
 echo $cmd
-eval $cmd
+# eval $cmd
 
 # Random pruning
 # CUDA_VISIBLE_DEVICES=$1 python -u main_rp.py --dataset ${dataset} --random_type rprp --model GCN

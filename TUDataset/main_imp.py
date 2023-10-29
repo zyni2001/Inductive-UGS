@@ -108,9 +108,9 @@ def get_model_and_masker():
 def run_all(dataset_feat_net_triples):
     
     dataset_name, feat_str, net = dataset_feat_net_triples[0]
-    """Remove existing raw and processed data."""
-    if os.path.exists('data/'+dataset_name):
-        shutil.rmtree('data/'+dataset_name)
+    # """Remove existing raw and processed data."""
+    # if os.path.exists('data/'+dataset_name):
+        # shutil.rmtree('data/'+dataset_name)
     dataset_ori = get_dataset(args, dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0, max_nodes=args.max_nodes)
     
     model_func, masker_func = get_model_and_masker()
@@ -119,7 +119,7 @@ def run_all(dataset_feat_net_triples):
     save_dir = "impckpt/{}-lr-{}-dim-{}".format(args.dataset,
                                                           args.mask_lr,
                                                           args.mask_dim)
-    for imp_num in range(1, 21):
+    for imp_num in range(0, 21):
         
         fold_things_list = train_get_mask(dataset_ori=dataset_ori,  
                                           model_func=model_func, 
