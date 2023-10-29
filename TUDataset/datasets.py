@@ -10,7 +10,7 @@ from image_dataset import ImageDataset
 from tu_dataset import TUDatasetExt
 import pdb
 
-def get_dataset(args, name, sparse=True, feat_str="deg+ak3+reall", root=None, pruning_percent=0):
+def get_dataset(args, name, sparse=True, feat_str="deg+ak3+reall", root=None, pruning_percent=0, max_nodes=500):
     if root is None or root == '':
         path = osp.join(osp.expanduser('~'), 'pyG_data', name)
     else:
@@ -62,7 +62,8 @@ def get_dataset(args, name, sparse=True, feat_str="deg+ak3+reall", root=None, pr
                 # pre_transform=None,
                 use_node_attr=True, 
                 processed_filename="data_%s.pt" % feat_str, 
-                pruning_percent=pruning_percent)
+                pruning_percent=pruning_percent,
+                pre_filter=MyFilter(max_nodes))
             
         else:
             dataset = TUDatasetExt(
@@ -72,9 +73,25 @@ def get_dataset(args, name, sparse=True, feat_str="deg+ak3+reall", root=None, pr
                 pre_transform=None,
                 use_node_attr=True, 
                 processed_filename="data_%s.pt" % feat_str, 
-                pruning_percent=pruning_percent)
+                pruning_percent=pruning_percent,
+                pre_filter=MyFilter(max_nodes))
         
 
         dataset.data.edge_attr = None
 
     return dataset
+
+class MyFilter(object):
+    def __init__(self, max_nodes):
+        self.max_nodes = max_nodes
+        self.skipped_indices = []  # List to store the indices of skipped graphs
+        self.current_index = 0  # Add this to track the current index
+
+    def __call__(self, data):
+        result = True
+        if data.num_nodes > self.max_nodes:
+            print(f"Skipping a graph with {data.num_nodes} nodes.")
+            self.skipped_indices.append(self.current_index)  # Record the current index
+            result = False
+        self.current_index += 1  # Increment the index every time this method is called
+        return result

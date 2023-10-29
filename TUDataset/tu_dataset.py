@@ -29,6 +29,8 @@ class TUDatasetExt(InMemoryDataset):
         self.pruning_percent = pruning_percent
         self.processed_filename = processed_filename
         super(TUDatasetExt, self).__init__(root, transform, pre_transform, pre_filter)
+        # self.cleanup()
+        # self.download()
 
         if self.pruning_percent > 0:
             self.pruned_data_path = self.processed_paths[0][:-3] + "_" + str(pruning_percent * 100) + self.processed_paths[0][-3:]
@@ -40,6 +42,13 @@ class TUDatasetExt(InMemoryDataset):
         if self.data.x is not None and not use_node_attr:
             self.data.x = self.data.x[:, self.num_node_attributes:]
 
+    # def cleanup(self):
+    #     """Remove existing raw and processed data."""
+    #     if os.path.exists(self.raw_dir/self.name):
+    #         shutil.rmtree(self.raw_dir/self.name)
+    #     if os.path.exists(self.processed_dir/name):
+    #         shutil.rmtree(self.processed_dir/name)
+    
     @property
     def num_node_labels(self):
         if self.data.x is None:
@@ -83,7 +92,7 @@ class TUDatasetExt(InMemoryDataset):
         if self.pre_filter is not None:
             data_list = [self.get(idx) for idx in range(len(self))]
             data_list = [data for data in data_list if self.pre_filter(data)]
-            pdb.set_trace()
+            # pdb.set_trace()
             self.data, self.slices = self.collate(data_list)
 
         if self.pre_transform is not None:

@@ -1,0 +1,323 @@
+[92mExp Information:[00m
+[92m------------------------------------------------------------------------------------------------------------------------------------------------------[00m
+[93mDataset:[DD] | Save Dir:[debug] | Seed:[666][00m
+epochs.......................................................................100
+get_mask_epochs..............................................................100
+score_function........................................................concat_mlp
+mask_lr.....................................................................0.01
+mask_dim......................................................................64
+mask_type....................................................................GCN
+save_masker_ckpt...........................................................False
+pruning_percent.............................................................0.05
+pruning_percent_w............................................................0.0
+binary.....................................................................False
+dataset.......................................................................DD
+max_nodes....................................................................500
+folds..........................................................................2
+seed.........................................................................666
+data_root...................................................................data
+save_dir...................................................................debug
+batch_size....................................................................32
+lr.........................................................................0.001
+lr_decay_factor..............................................................0.5
+lr_decay_step_size...........................................................500
+weight_decay...................................................................0
+epoch_select............................................................test_max
+n_layers_feat..................................................................1
+n_layers_conv..................................................................3
+n_layers_fc....................................................................2
+hidden.......................................................................128
+global_pool..................................................................sum
+skip_connection............................................................False
+res_branch............................................................BNConvReLU
+dropout........................................................................0
+edge_norm...................................................................True
+with_eval_mode..............................................................True
+semi_split....................................................................10
+pre_trans...................................................................True
+og_url......................................................................True
+
+[92m----------------------------------------------------------------------------------------------------[00m
+Downloading https://www.chrsmrrs.com/graphkerneldatasets/DD.zip
+Extracting data/DD/DD.zip
+Processing...
+Skipping a graph with 4152 nodes.
+Skipping a graph with 1396 nodes.
+Skipping a graph with 503 nodes.
+Skipping a graph with 5748 nodes.
+Skipping a graph with 697 nodes.
+Skipping a graph with 557 nodes.
+Skipping a graph with 534 nodes.
+Skipping a graph with 620 nodes.
+Skipping a graph with 611 nodes.
+Skipping a graph with 775 nodes.
+Skipping a graph with 540 nodes.
+Skipping a graph with 1021 nodes.
+Skipping a graph with 504 nodes.
+Skipping a graph with 561 nodes.
+Skipping a graph with 574 nodes.
+Skipping a graph with 534 nodes.
+Skipping a graph with 560 nodes.
+Skipping a graph with 580 nodes.
+Skipping a graph with 729 nodes.
+Skipping a graph with 660 nodes.
+Skipping a graph with 553 nodes.
+Skipping a graph with 510 nodes.
+Skipping a graph with 538 nodes.
+Skipping a graph with 645 nodes.
+Skipping a graph with 2495 nodes.
+Skipping a graph with 841 nodes.
+Skipping a graph with 540 nodes.
+Skipping a graph with 551 nodes.
+Skipping a graph with 640 nodes.
+Skipping a graph with 721 nodes.
+Skipping a graph with 508 nodes.
+Skipping a graph with 601 nodes.
+Skipping a graph with 504 nodes.
+Skipping a graph with 1284 nodes.
+Skipping a graph with 545 nodes.
+Skipping a graph with 533 nodes.
+Skipping a graph with 629 nodes.
+Skipping a graph with 803 nodes.
+Skipping a graph with 512 nodes.
+Skipping a graph with 592 nodes.
+Skipping a graph with 504 nodes.
+Skipping a graph with 1160 nodes.
+Skipping a graph with 571 nodes.
+Skipping a graph with 555 nodes.
+Skipping a graph with 636 nodes.
+Skipping a graph with 639 nodes.
+Skipping a graph with 1019 nodes.
+Skipping a graph with 664 nodes.
+Skipping a graph with 516 nodes.
+Skipping a graph with 897 nodes.
+Skipping a graph with 1103 nodes.
+Skipping a graph with 725 nodes.
+Skipping a graph with 616 nodes.
+Skipping a graph with 553 nodes.
+Skipping a graph with 807 nodes.
+Skipping a graph with 525 nodes.
+Skipping a graph with 678 nodes.
+Skipping a graph with 539 nodes.
+Skipping a graph with 723 nodes.
+Skipping a graph with 585 nodes.
+Skipping a graph with 537 nodes.
+Skipping a graph with 508 nodes.
+Skipping a graph with 858 nodes.
+Skipping a graph with 834 nodes.
+Skipping a graph with 727 nodes.
+Skipping a graph with 710 nodes.
+Skipping a graph with 903 nodes.
+Skipping a graph with 623 nodes.
+Skipping a graph with 532 nodes.
+Skipping a graph with 655 nodes.
+Skipping a graph with 550 nodes.
+Skipping a graph with 514 nodes.
+Skipping a graph with 1704 nodes.
+Skipping a graph with 710 nodes.
+Skipping a graph with 618 nodes.
+Skipping a graph with 737 nodes.
+Skipping a graph with 605 nodes.
+Skipping a graph with 576 nodes.
+Skipping a graph with 839 nodes.
+Skipping a graph with 869 nodes.
+Skipping a graph with 565 nodes.
+Skipping a graph with 522 nodes.
+Skipping a graph with 623 nodes.
+Skipping a graph with 570 nodes.
+Skipping a graph with 522 nodes.
+Skipping a graph with 684 nodes.
+Skipping a graph with 779 nodes.
+Skipping a graph with 561 nodes.
+Skipping a graph with 679 nodes.
+Skipping a graph with 523 nodes.
+Skipping a graph with 534 nodes.
+Skipping a graph with 753 nodes.
+Skipping a graph with 725 nodes.
+Skipping a graph with 560 nodes.
+Skipping a graph with 691 nodes.
+Skipping a graph with 578 nodes.
+Skipping a graph with 684 nodes.
+Skipping a graph with 685 nodes.
+Skipping a graph with 560 nodes.
+Skipping a graph with 553 nodes.
+Skipping a graph with 582 nodes.
+Skipping a graph with 546 nodes.
+Skipping a graph with 570 nodes.
+Skipping a graph with 508 nodes.
+Skipping a graph with 569 nodes.
+Skipping a graph with 530 nodes.
+Skipping a graph with 576 nodes.
+Skipping a graph with 517 nodes.
+Skipping a graph with 589 nodes.
+Skipping a graph with 600 nodes.
+Skipping a graph with 743 nodes.
+Skipping a graph with 523 nodes.
+Skipping a graph with 573 nodes.
+Skipping a graph with 707 nodes.
+Skipping a graph with 558 nodes.
+Skipping a graph with 543 nodes.
+Skipping a graph with 573 nodes.
+Skipping a graph with 891 nodes.
+/home/zhiyu/anaconda3/envs/gnn-infer/lib/python3.10/site-packages/torch_geometric/data/in_memory_dataset.py:157: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+Done!
+/home/zhiyu/anaconda3/envs/gnn-infer/lib/python3.10/site-packages/torch_geometric/deprecation.py:22: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+INFO: Weight Sparsity [0.0000%] 
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[1/100] Loss:[0.5587] Train:[72.64] Test:[44.15] | Best Test:[44.15] at Epoch:[1] | 0-0.2:[25.30%] 0.2-0.4:[10.22%] 0.4-0.6:[15.87%] 0.6-0.8:[12.82%] 0.8-1.0:[35.79%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[2/100] Loss:[0.5264] Train:[76.60] Test:[55.47] | Best Test:[55.47] at Epoch:[2] | 0-0.2:[39.57%] 0.2-0.4:[3.32%] 0.4-0.6:[2.82%] 0.6-0.8:[3.50%] 0.8-1.0:[50.79%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[3/100] Loss:[0.5030] Train:[77.55] Test:[74.91] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[42.15%] 0.2-0.4:[2.33%] 0.4-0.6:[1.94%] 0.6-0.8:[2.42%] 0.8-1.0:[51.16%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[4/100] Loss:[0.4515] Train:[80.00] Test:[69.81] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[35.43%] 0.2-0.4:[1.78%] 0.4-0.6:[1.49%] 0.6-0.8:[1.87%] 0.8-1.0:[59.42%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[5/100] Loss:[0.4536] Train:[80.00] Test:[70.19] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[39.67%] 0.2-0.4:[2.30%] 0.4-0.6:[1.96%] 0.6-0.8:[2.45%] 0.8-1.0:[53.63%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[6/100] Loss:[0.4180] Train:[80.75] Test:[45.66] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[41.12%] 0.2-0.4:[2.33%] 0.4-0.6:[2.05%] 0.6-0.8:[2.64%] 0.8-1.0:[51.87%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[7/100] Loss:[0.3798] Train:[82.26] Test:[69.06] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[40.70%] 0.2-0.4:[1.42%] 0.4-0.6:[1.24%] 0.6-0.8:[1.50%] 0.8-1.0:[55.15%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[8/100] Loss:[0.3480] Train:[84.91] Test:[69.81] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[34.33%] 0.2-0.4:[1.07%] 0.4-0.6:[0.94%] 0.6-0.8:[1.16%] 0.8-1.0:[62.50%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[9/100] Loss:[0.3286] Train:[87.36] Test:[67.17] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[27.77%] 0.2-0.4:[0.73%] 0.4-0.6:[0.61%] 0.6-0.8:[0.77%] 0.8-1.0:[70.12%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[10/100] Loss:[0.3062] Train:[87.36] Test:[69.62] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[27.64%] 0.2-0.4:[0.59%] 0.4-0.6:[0.52%] 0.6-0.8:[0.64%] 0.8-1.0:[70.62%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[11/100] Loss:[0.2917] Train:[87.92] Test:[42.64] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[27.14%] 0.2-0.4:[0.55%] 0.4-0.6:[0.46%] 0.6-0.8:[0.60%] 0.8-1.0:[71.26%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[12/100] Loss:[0.2501] Train:[90.75] Test:[52.64] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[23.06%] 0.2-0.4:[0.40%] 0.4-0.6:[0.35%] 0.6-0.8:[0.44%] 0.8-1.0:[75.75%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[13/100] Loss:[0.2218] Train:[92.08] Test:[71.13] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[24.03%] 0.2-0.4:[0.42%] 0.4-0.6:[0.36%] 0.6-0.8:[0.47%] 0.8-1.0:[74.72%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[14/100] Loss:[0.2015] Train:[92.45] Test:[73.77] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[20.03%] 0.2-0.4:[0.35%] 0.4-0.6:[0.30%] 0.6-0.8:[0.36%] 0.8-1.0:[78.96%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[15/100] Loss:[0.2307] Train:[91.51] Test:[41.70] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[21.46%] 0.2-0.4:[0.39%] 0.4-0.6:[0.32%] 0.6-0.8:[0.42%] 0.8-1.0:[77.41%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[16/100] Loss:[0.2353] Train:[91.70] Test:[62.45] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[24.82%] 0.2-0.4:[0.41%] 0.4-0.6:[0.34%] 0.6-0.8:[0.41%] 0.8-1.0:[74.01%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[17/100] Loss:[0.1958] Train:[92.45] Test:[74.15] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[23.26%] 0.2-0.4:[0.32%] 0.4-0.6:[0.29%] 0.6-0.8:[0.34%] 0.8-1.0:[75.79%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[18/100] Loss:[0.1664] Train:[93.58] Test:[43.77] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[23.56%] 0.2-0.4:[0.27%] 0.4-0.6:[0.23%] 0.6-0.8:[0.28%] 0.8-1.0:[75.66%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[19/100] Loss:[0.1379] Train:[94.53] Test:[70.38] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[23.82%] 0.2-0.4:[0.27%] 0.4-0.6:[0.23%] 0.6-0.8:[0.26%] 0.8-1.0:[75.42%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[20/100] Loss:[0.1146] Train:[96.04] Test:[70.00] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[17.74%] 0.2-0.4:[0.20%] 0.4-0.6:[0.17%] 0.6-0.8:[0.22%] 0.8-1.0:[81.68%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[21/100] Loss:[0.0967] Train:[96.60] Test:[71.89] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[16.17%] 0.2-0.4:[0.17%] 0.4-0.6:[0.14%] 0.6-0.8:[0.18%] 0.8-1.0:[83.34%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[22/100] Loss:[0.1103] Train:[96.04] Test:[73.77] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[12.56%] 0.2-0.4:[0.17%] 0.4-0.6:[0.15%] 0.6-0.8:[0.17%] 0.8-1.0:[86.95%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[23/100] Loss:[0.1295] Train:[94.15] Test:[74.15] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[11.46%] 0.2-0.4:[0.12%] 0.4-0.6:[0.10%] 0.6-0.8:[0.13%] 0.8-1.0:[88.19%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[24/100] Loss:[0.1448] Train:[95.09] Test:[63.77] | Best Test:[74.91] at Epoch:[3] | 0-0.2:[16.66%] 0.2-0.4:[0.15%] 0.4-0.6:[0.12%] 0.6-0.8:[0.14%] 0.8-1.0:[82.93%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[25/100] Loss:[0.1093] Train:[96.23] Test:[75.28] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[18.09%] 0.2-0.4:[0.17%] 0.4-0.6:[0.14%] 0.6-0.8:[0.17%] 0.8-1.0:[81.43%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[26/100] Loss:[0.1181] Train:[95.66] Test:[57.55] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[17.71%] 0.2-0.4:[0.14%] 0.4-0.6:[0.12%] 0.6-0.8:[0.15%] 0.8-1.0:[81.87%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[27/100] Loss:[0.1620] Train:[94.15] Test:[72.45] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[17.63%] 0.2-0.4:[0.10%] 0.4-0.6:[0.09%] 0.6-0.8:[0.11%] 0.8-1.0:[82.07%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[28/100] Loss:[0.0879] Train:[96.98] Test:[73.58] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[17.48%] 0.2-0.4:[0.10%] 0.4-0.6:[0.08%] 0.6-0.8:[0.11%] 0.8-1.0:[82.23%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[29/100] Loss:[0.0934] Train:[96.79] Test:[71.89] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[20.79%] 0.2-0.4:[0.11%] 0.4-0.6:[0.09%] 0.6-0.8:[0.11%] 0.8-1.0:[78.90%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[30/100] Loss:[0.0872] Train:[96.98] Test:[72.26] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[23.38%] 0.2-0.4:[0.14%] 0.4-0.6:[0.11%] 0.6-0.8:[0.15%] 0.8-1.0:[76.22%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[31/100] Loss:[0.1294] Train:[94.91] Test:[71.32] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[24.24%] 0.2-0.4:[0.15%] 0.4-0.6:[0.12%] 0.6-0.8:[0.14%] 0.8-1.0:[75.35%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[32/100] Loss:[0.1235] Train:[94.91] Test:[71.13] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[22.61%] 0.2-0.4:[0.14%] 0.4-0.6:[0.12%] 0.6-0.8:[0.13%] 0.8-1.0:[77.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[33/100] Loss:[0.1180] Train:[95.28] Test:[71.51] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[23.30%] 0.2-0.4:[0.13%] 0.4-0.6:[0.10%] 0.6-0.8:[0.13%] 0.8-1.0:[76.34%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[34/100] Loss:[0.0861] Train:[97.36] Test:[72.08] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[24.36%] 0.2-0.4:[0.13%] 0.4-0.6:[0.11%] 0.6-0.8:[0.13%] 0.8-1.0:[75.26%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[35/100] Loss:[0.1057] Train:[95.66] Test:[73.02] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[22.15%] 0.2-0.4:[0.13%] 0.4-0.6:[0.10%] 0.6-0.8:[0.12%] 0.8-1.0:[77.49%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[36/100] Loss:[0.0868] Train:[97.17] Test:[62.08] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[17.88%] 0.2-0.4:[0.11%] 0.4-0.6:[0.09%] 0.6-0.8:[0.11%] 0.8-1.0:[81.82%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[37/100] Loss:[0.0441] Train:[99.06] Test:[68.30] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[16.88%] 0.2-0.4:[0.11%] 0.4-0.6:[0.09%] 0.6-0.8:[0.10%] 0.8-1.0:[82.82%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[38/100] Loss:[0.0868] Train:[97.92] Test:[74.72] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[14.14%] 0.2-0.4:[0.09%] 0.4-0.6:[0.08%] 0.6-0.8:[0.10%] 0.8-1.0:[85.58%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[39/100] Loss:[0.0620] Train:[97.55] Test:[70.19] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[11.13%] 0.2-0.4:[0.09%] 0.4-0.6:[0.08%] 0.6-0.8:[0.09%] 0.8-1.0:[88.61%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[40/100] Loss:[0.0479] Train:[98.49] Test:[74.91] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[11.19%] 0.2-0.4:[0.07%] 0.4-0.6:[0.05%] 0.6-0.8:[0.07%] 0.8-1.0:[88.62%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[41/100] Loss:[0.1073] Train:[95.47] Test:[71.51] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[10.68%] 0.2-0.4:[0.07%] 0.4-0.6:[0.05%] 0.6-0.8:[0.07%] 0.8-1.0:[89.13%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[42/100] Loss:[0.0879] Train:[96.98] Test:[62.83] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[9.38%] 0.2-0.4:[0.05%] 0.4-0.6:[0.05%] 0.6-0.8:[0.06%] 0.8-1.0:[90.46%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[43/100] Loss:[0.0823] Train:[97.36] Test:[71.32] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[10.37%] 0.2-0.4:[0.08%] 0.4-0.6:[0.07%] 0.6-0.8:[0.08%] 0.8-1.0:[89.40%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[44/100] Loss:[0.0443] Train:[98.49] Test:[70.75] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[10.77%] 0.2-0.4:[0.08%] 0.4-0.6:[0.07%] 0.6-0.8:[0.09%] 0.8-1.0:[88.99%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[45/100] Loss:[0.0833] Train:[96.42] Test:[70.19] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[9.32%] 0.2-0.4:[0.08%] 0.4-0.6:[0.06%] 0.6-0.8:[0.08%] 0.8-1.0:[90.46%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[46/100] Loss:[0.0870] Train:[97.17] Test:[74.53] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[5.98%] 0.2-0.4:[0.06%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[93.87%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[47/100] Loss:[0.0459] Train:[98.68] Test:[69.81] | Best Test:[75.28] at Epoch:[25] | 0-0.2:[6.08%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[93.79%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[48/100] Loss:[0.0374] Train:[98.68] Test:[75.66] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[6.19%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.04%] 0.8-1.0:[93.69%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[49/100] Loss:[0.0494] Train:[98.30] Test:[74.91] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[5.75%] 0.2-0.4:[0.04%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[94.14%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[50/100] Loss:[0.0374] Train:[98.87] Test:[67.92] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[6.14%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.04%] 0.8-1.0:[93.73%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[51/100] Loss:[0.0560] Train:[97.92] Test:[73.96] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[7.37%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[92.49%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[52/100] Loss:[0.0200] Train:[99.43] Test:[73.02] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[7.78%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[92.08%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[53/100] Loss:[0.0593] Train:[97.36] Test:[74.72] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[6.43%] 0.2-0.4:[0.04%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[93.46%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[54/100] Loss:[0.0702] Train:[97.36] Test:[72.83] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[6.14%] 0.2-0.4:[0.06%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[93.70%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[55/100] Loss:[0.0944] Train:[96.60] Test:[65.47] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[6.13%] 0.2-0.4:[0.05%] 0.4-0.6:[0.05%] 0.6-0.8:[0.06%] 0.8-1.0:[93.71%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[56/100] Loss:[0.0555] Train:[97.92] Test:[74.91] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[5.36%] 0.2-0.4:[0.06%] 0.4-0.6:[0.05%] 0.6-0.8:[0.06%] 0.8-1.0:[94.47%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[57/100] Loss:[0.0256] Train:[99.43] Test:[73.77] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[3.74%] 0.2-0.4:[0.06%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[96.11%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[58/100] Loss:[0.0218] Train:[99.62] Test:[73.96] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[3.37%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.06%] 0.8-1.0:[96.48%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[59/100] Loss:[0.0193] Train:[99.62] Test:[72.26] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[4.43%] 0.2-0.4:[0.06%] 0.4-0.6:[0.05%] 0.6-0.8:[0.06%] 0.8-1.0:[95.41%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[60/100] Loss:[0.0372] Train:[98.49] Test:[68.68] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[4.39%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[95.47%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[61/100] Loss:[0.0375] Train:[98.30] Test:[73.77] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[4.04%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[95.82%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[62/100] Loss:[0.0349] Train:[98.87] Test:[55.85] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[3.30%] 0.2-0.4:[0.11%] 0.4-0.6:[0.09%] 0.6-0.8:[0.13%] 0.8-1.0:[96.37%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[63/100] Loss:[0.0949] Train:[97.36] Test:[69.25] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[4.41%] 0.2-0.4:[0.33%] 0.4-0.6:[0.30%] 0.6-0.8:[0.37%] 0.8-1.0:[94.59%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[64/100] Loss:[0.0221] Train:[99.81] Test:[73.77] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[1.20%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[98.76%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[65/100] Loss:[0.0122] Train:[99.81] Test:[70.75] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.90%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[99.06%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[66/100] Loss:[0.0232] Train:[99.06] Test:[74.53] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.18%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[99.81%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[67/100] Loss:[0.0535] Train:[98.11] Test:[59.06] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[68/100] Loss:[0.0627] Train:[98.11] Test:[44.15] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[69/100] Loss:[0.0612] Train:[97.17] Test:[44.34] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[70/100] Loss:[0.0465] Train:[97.92] Test:[46.23] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[71/100] Loss:[0.0381] Train:[98.87] Test:[53.77] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[72/100] Loss:[0.0204] Train:[98.87] Test:[62.08] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[73/100] Loss:[0.0145] Train:[99.43] Test:[63.77] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[74/100] Loss:[0.0400] Train:[99.06] Test:[65.85] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[75/100] Loss:[0.0296] Train:[99.43] Test:[67.17] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[76/100] Loss:[0.0400] Train:[98.87] Test:[71.13] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[77/100] Loss:[0.0406] Train:[98.49] Test:[59.43] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[78/100] Loss:[0.0469] Train:[98.30] Test:[44.72] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[79/100] Loss:[0.0299] Train:[99.43] Test:[52.64] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[80/100] Loss:[0.0158] Train:[99.43] Test:[61.70] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[81/100] Loss:[0.0064] Train:[99.81] Test:[58.68] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[82/100] Loss:[0.0033] Train:[100.00] Test:[62.26] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[83/100] Loss:[0.0299] Train:[99.25] Test:[61.89] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[84/100] Loss:[0.0349] Train:[98.87] Test:[49.06] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[85/100] Loss:[0.0588] Train:[98.11] Test:[65.09] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[86/100] Loss:[0.0266] Train:[98.87] Test:[71.32] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[87/100] Loss:[0.0450] Train:[98.11] Test:[75.28] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[88/100] Loss:[0.0611] Train:[97.55] Test:[46.23] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[89/100] Loss:[0.0209] Train:[99.06] Test:[67.55] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[90/100] Loss:[0.0149] Train:[99.62] Test:[66.79] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[91/100] Loss:[0.0166] Train:[99.43] Test:[70.94] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[92/100] Loss:[0.0075] Train:[99.81] Test:[71.13] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[93/100] Loss:[0.0045] Train:[100.00] Test:[73.58] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[94/100] Loss:[0.0198] Train:[99.43] Test:[66.04] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[95/100] Loss:[0.0172] Train:[99.25] Test:[67.92] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[96/100] Loss:[0.0688] Train:[97.92] Test:[61.89] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[97/100] Loss:[0.0567] Train:[98.11] Test:[73.21] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[98/100] Loss:[0.0503] Train:[97.92] Test:[71.51] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[99/100] Loss:[0.0169] Train:[99.06] Test:[72.64] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+(Train IMP:[1] fold:[0] spa:[0.00%] spw:[0.00%]) Epoch:[100/100] Loss:[0.0216] Train:[99.06] Test:[74.15] | Best Test:[75.66] at Epoch:[48] | 0-0.2:[0.00%] 0.2-0.4:[0.00%] 0.4-0.6:[0.00%] 0.6-0.8:[0.00%] 0.8-1.0:[100.00%]
+INFO: Weight Sparsity [0.0000%] 
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[1/100] Loss:[0.5796] Train:[70.19] Test:[43.77] | Best Test:[43.77] at Epoch:[1] | 0-0.2:[11.52%] 0.2-0.4:[10.26%] 0.4-0.6:[23.97%] 0.6-0.8:[24.03%] 0.8-1.0:[30.22%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[2/100] Loss:[0.4963] Train:[77.92] Test:[45.47] | Best Test:[45.47] at Epoch:[2] | 0-0.2:[26.88%] 0.2-0.4:[4.94%] 0.4-0.6:[4.77%] 0.6-0.8:[6.55%] 0.8-1.0:[56.87%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[3/100] Loss:[0.4544] Train:[79.06] Test:[76.60] | Best Test:[76.60] at Epoch:[3] | 0-0.2:[23.64%] 0.2-0.4:[3.54%] 0.4-0.6:[3.38%] 0.6-0.8:[4.71%] 0.8-1.0:[64.73%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[4/100] Loss:[0.4409] Train:[80.38] Test:[46.98] | Best Test:[76.60] at Epoch:[3] | 0-0.2:[16.70%] 0.2-0.4:[2.99%] 0.4-0.6:[3.12%] 0.6-0.8:[4.97%] 0.8-1.0:[72.21%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[5/100] Loss:[0.4239] Train:[80.75] Test:[76.98] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[24.83%] 0.2-0.4:[2.46%] 0.4-0.6:[2.29%] 0.6-0.8:[3.08%] 0.8-1.0:[67.33%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[6/100] Loss:[0.3844] Train:[83.40] Test:[64.53] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[25.37%] 0.2-0.4:[2.11%] 0.4-0.6:[1.92%] 0.6-0.8:[2.55%] 0.8-1.0:[68.05%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[7/100] Loss:[0.3879] Train:[82.08] Test:[44.53] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[30.31%] 0.2-0.4:[1.60%] 0.4-0.6:[1.40%] 0.6-0.8:[1.78%] 0.8-1.0:[64.91%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[8/100] Loss:[0.3617] Train:[81.70] Test:[69.62] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[33.77%] 0.2-0.4:[1.40%] 0.4-0.6:[1.17%] 0.6-0.8:[1.46%] 0.8-1.0:[62.20%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[9/100] Loss:[0.3351] Train:[85.85] Test:[76.23] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[29.05%] 0.2-0.4:[1.15%] 0.4-0.6:[1.00%] 0.6-0.8:[1.26%] 0.8-1.0:[67.54%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[10/100] Loss:[0.3105] Train:[87.36] Test:[74.72] | Best Test:[76.98] at Epoch:[5] | 0-0.2:[24.81%] 0.2-0.4:[0.96%] 0.4-0.6:[0.84%] 0.6-0.8:[1.11%] 0.8-1.0:[72.29%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[11/100] Loss:[0.2985] Train:[86.79] Test:[77.74] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[23.56%] 0.2-0.4:[0.85%] 0.4-0.6:[0.73%] 0.6-0.8:[0.91%] 0.8-1.0:[73.95%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[12/100] Loss:[0.2644] Train:[89.62] Test:[54.34] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[20.50%] 0.2-0.4:[0.69%] 0.4-0.6:[0.61%] 0.6-0.8:[0.74%] 0.8-1.0:[77.46%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[13/100] Loss:[0.2677] Train:[89.43] Test:[75.85] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[15.19%] 0.2-0.4:[0.46%] 0.4-0.6:[0.38%] 0.6-0.8:[0.51%] 0.8-1.0:[83.46%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[14/100] Loss:[0.2435] Train:[91.32] Test:[57.55] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[13.68%] 0.2-0.4:[0.42%] 0.4-0.6:[0.36%] 0.6-0.8:[0.45%] 0.8-1.0:[85.09%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[15/100] Loss:[0.2239] Train:[89.43] Test:[62.45] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[12.72%] 0.2-0.4:[0.37%] 0.4-0.6:[0.34%] 0.6-0.8:[0.45%] 0.8-1.0:[86.12%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[16/100] Loss:[0.2148] Train:[90.19] Test:[66.23] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[9.80%] 0.2-0.4:[0.31%] 0.4-0.6:[0.26%] 0.6-0.8:[0.35%] 0.8-1.0:[89.27%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[17/100] Loss:[0.2161] Train:[91.51] Test:[50.38] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[10.48%] 0.2-0.4:[0.32%] 0.4-0.6:[0.27%] 0.6-0.8:[0.34%] 0.8-1.0:[88.59%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[18/100] Loss:[0.1397] Train:[94.91] Test:[75.28] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[7.93%] 0.2-0.4:[0.26%] 0.4-0.6:[0.23%] 0.6-0.8:[0.29%] 0.8-1.0:[91.29%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[19/100] Loss:[0.1583] Train:[94.72] Test:[64.91] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.75%] 0.2-0.4:[0.70%] 0.4-0.6:[0.70%] 0.6-0.8:[1.09%] 0.8-1.0:[90.76%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[20/100] Loss:[0.1799] Train:[93.21] Test:[66.98] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[8.29%] 0.2-0.4:[0.19%] 0.4-0.6:[0.16%] 0.6-0.8:[0.21%] 0.8-1.0:[91.16%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[21/100] Loss:[0.1630] Train:[93.96] Test:[64.34] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[10.53%] 0.2-0.4:[0.23%] 0.4-0.6:[0.20%] 0.6-0.8:[0.26%] 0.8-1.0:[88.78%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[22/100] Loss:[0.1152] Train:[95.47] Test:[76.04] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[8.70%] 0.2-0.4:[0.18%] 0.4-0.6:[0.15%] 0.6-0.8:[0.20%] 0.8-1.0:[90.77%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[23/100] Loss:[0.0981] Train:[96.23] Test:[68.68] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.63%] 0.2-0.4:[0.14%] 0.4-0.6:[0.12%] 0.6-0.8:[0.15%] 0.8-1.0:[92.95%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[24/100] Loss:[0.0701] Train:[97.92] Test:[71.32] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.70%] 0.2-0.4:[0.15%] 0.4-0.6:[0.12%] 0.6-0.8:[0.15%] 0.8-1.0:[92.87%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[25/100] Loss:[0.1077] Train:[95.66] Test:[73.96] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.61%] 0.2-0.4:[0.18%] 0.4-0.6:[0.17%] 0.6-0.8:[0.22%] 0.8-1.0:[92.82%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[26/100] Loss:[0.0916] Train:[96.60] Test:[66.60] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.72%] 0.2-0.4:[0.08%] 0.4-0.6:[0.07%] 0.6-0.8:[0.09%] 0.8-1.0:[93.04%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[27/100] Loss:[0.0744] Train:[97.17] Test:[72.83] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[6.95%] 0.2-0.4:[0.07%] 0.4-0.6:[0.06%] 0.6-0.8:[0.08%] 0.8-1.0:[92.83%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[28/100] Loss:[0.1063] Train:[95.47] Test:[69.62] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[9.91%] 0.2-0.4:[0.12%] 0.4-0.6:[0.09%] 0.6-0.8:[0.12%] 0.8-1.0:[89.77%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[29/100] Loss:[0.1383] Train:[96.04] Test:[63.02] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[5.62%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.06%] 0.8-1.0:[94.23%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[30/100] Loss:[0.0975] Train:[96.04] Test:[58.68] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.66%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.04%] 0.8-1.0:[95.23%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[31/100] Loss:[0.1288] Train:[96.42] Test:[66.79] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.79%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[95.08%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[32/100] Loss:[0.1013] Train:[95.66] Test:[70.19] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.09%] 0.2-0.4:[0.04%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[95.80%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[33/100] Loss:[0.1004] Train:[95.47] Test:[73.21] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.59%] 0.2-0.4:[0.04%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[95.31%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[34/100] Loss:[0.0988] Train:[96.60] Test:[71.89] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[5.76%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[94.11%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[35/100] Loss:[0.1115] Train:[95.66] Test:[66.60] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[5.34%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.05%] 0.8-1.0:[94.53%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[36/100] Loss:[0.0556] Train:[98.49] Test:[61.51] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.48%] 0.2-0.4:[0.04%] 0.4-0.6:[0.04%] 0.6-0.8:[0.04%] 0.8-1.0:[95.40%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[37/100] Loss:[0.1075] Train:[96.23] Test:[63.21] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[5.58%] 0.2-0.4:[0.05%] 0.4-0.6:[0.04%] 0.6-0.8:[0.06%] 0.8-1.0:[94.27%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[38/100] Loss:[0.0601] Train:[98.30] Test:[72.64] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.64%] 0.2-0.4:[0.04%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[95.25%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[39/100] Loss:[0.0479] Train:[97.74] Test:[73.40] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[4.50%] 0.2-0.4:[0.03%] 0.4-0.6:[0.03%] 0.6-0.8:[0.04%] 0.8-1.0:[95.39%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[40/100] Loss:[0.0683] Train:[97.36] Test:[61.89] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.29%] 0.2-0.4:[0.03%] 0.4-0.6:[0.02%] 0.6-0.8:[0.03%] 0.8-1.0:[96.64%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[41/100] Loss:[0.0394] Train:[99.25] Test:[51.70] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.19%] 0.2-0.4:[0.02%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[96.75%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[42/100] Loss:[0.0300] Train:[98.87] Test:[70.19] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.80%] 0.2-0.4:[0.02%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[97.14%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[43/100] Loss:[0.0224] Train:[99.06] Test:[70.00] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.49%] 0.2-0.4:[0.02%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[97.46%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[44/100] Loss:[0.0525] Train:[98.49] Test:[72.64] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.25%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[97.71%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[45/100] Loss:[0.0378] Train:[98.87] Test:[70.94] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.07%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.01%] 0.8-1.0:[97.89%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[46/100] Loss:[0.0407] Train:[98.49] Test:[71.13] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[1.95%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.01%] 0.8-1.0:[98.01%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[47/100] Loss:[0.0415] Train:[98.30] Test:[69.81] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.03%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.01%] 0.8-1.0:[97.94%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[48/100] Loss:[0.0539] Train:[97.92] Test:[50.19] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.40%] 0.2-0.4:[0.01%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[97.55%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[49/100] Loss:[0.0661] Train:[97.55] Test:[58.87] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.63%] 0.2-0.4:[0.02%] 0.4-0.6:[0.01%] 0.6-0.8:[0.01%] 0.8-1.0:[97.33%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[50/100] Loss:[0.0583] Train:[97.36] Test:[72.08] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.64%] 0.2-0.4:[0.02%] 0.4-0.6:[0.01%] 0.6-0.8:[0.02%] 0.8-1.0:[97.31%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[51/100] Loss:[0.0547] Train:[98.49] Test:[66.60] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.28%] 0.2-0.4:[0.02%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[96.65%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[52/100] Loss:[0.0470] Train:[98.30] Test:[65.28] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.67%] 0.2-0.4:[0.02%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[96.26%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[53/100] Loss:[0.0461] Train:[98.11] Test:[72.08] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.63%] 0.2-0.4:[0.03%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[96.29%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[54/100] Loss:[0.1147] Train:[96.42] Test:[65.66] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[3.50%] 0.2-0.4:[0.02%] 0.4-0.6:[0.03%] 0.6-0.8:[0.03%] 0.8-1.0:[96.43%]
+(Train IMP:[1] fold:[1] spa:[0.00%] spw:[0.00%]) Epoch:[55/100] Loss:[0.0433] Train:[98.49] Test:[67.74] | Best Test:[77.74] at Epoch:[11] | 0-0.2:[2.39%] 0.2-0.4:[0.02%] 0.4-0.6:[0.02%] 0.6-0.8:[0.02%] 0.8-1.0:[97.55%]

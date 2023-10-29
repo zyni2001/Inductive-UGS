@@ -8,10 +8,12 @@ import argparse
 from utils import logger
 from datasets import get_dataset
 from train_eval_imp import train_get_mask, eval_tickets
-from res_gcn import ResGCN, GCNmasker
+from res_gcn import ResGCN, GCNmasker, DiffPoolNet
 import random
 import copy
 import pdb
+import os
+import shutil
 
 DATA_SOCIAL = ['COLLAB', 'IMDB-BINARY', 'IMDB-MULTI']
 DATA_SOCIAL += ['REDDIT-MULTI-5K', 'REDDIT-MULTI-12K', 'REDDIT-BINARY']
@@ -40,6 +42,7 @@ parser.add_argument('--pruning_percent_w', type=float, default=0.2)
 parser.add_argument('--binary', type=str2bool, default=False)
 ################## GCN Training Settings ##################
 parser.add_argument('--dataset', type=str, default="NCI1")
+parser.add_argument('--max_nodes', type=int, default=1000)
 parser.add_argument('--folds', type=int, default=10)
 parser.add_argument('--seed', type=int, default=666)
 parser.add_argument('--data_root', type=str, default="data")
@@ -91,7 +94,8 @@ def create_n_filter_triples(datasets,
 def get_model_and_masker():
     # save the resgcn and gcnmasker without accuracy drop
     def model_func(dataset):
-        return ResGCN(dataset, hidden=192)  
+        # return ResGCN(dataset, hidden=192)  
+        return DiffPoolNet(num_feats=dataset.num_features, num_classes=dataset.num_classes, max_nodes=500)
 
     def masker_func(dataset):
         return GCNmasker(dataset, hidden=args.mask_dim, 
@@ -104,7 +108,10 @@ def get_model_and_masker():
 def run_all(dataset_feat_net_triples):
     
     dataset_name, feat_str, net = dataset_feat_net_triples[0]
-    dataset_ori = get_dataset(args, dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0)
+    """Remove existing raw and processed data."""
+    if os.path.exists('data/'+dataset_name):
+        shutil.rmtree('data/'+dataset_name)
+    dataset_ori = get_dataset(args, dataset_name, sparse=True, feat_str=feat_str, root=args.data_root, pruning_percent=0, max_nodes=args.max_nodes)
     
     model_func, masker_func = get_model_and_masker()
     fold_things_list = None

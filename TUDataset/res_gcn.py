@@ -4,10 +4,14 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Linear, BatchNorm1d, Sequential, ReLU
-from torch_geometric.nn import global_mean_pool, global_add_pool, GINConv, GATConv, DenseSAGEConv, dense_diff_pool, SAGEConv, DiffPool
+from torch_geometric.nn import global_mean_pool, global_add_pool, GINConv, GATConv, DenseSAGEConv, dense_diff_pool, SAGEConv
 from gcn_conv import GCNConv
 import pdb
 from math import ceil
+
+from typing import Optional, Tuple
+from torch import Tensor
+
 
 class ResGCN(torch.nn.Module):
     """GCN with BN and residual connection."""
@@ -73,13 +77,61 @@ class ResGCN(torch.nn.Module):
         x = self.lin_class(x)
         return F.log_softmax(x, dim=-1)
 
-class DiffPool(torch.nn.Module):
+def sparse_diff_pool(
+    x: Tensor,
+    edge_index: Tensor,
+    s: Tensor,
+    mask: Optional[Tensor] = None,
+    normalize: bool = True,
+    ) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
+    x = x.unsqueeze(0) if x.dim() == 2 else x
+    s = s.unsqueeze(0) if s.dim() == 2 else s
+
+    batch_size, num_nodes, _ = x.size()
+
+    s = torch.softmax(s, dim=-1)
+
+    if mask is not None:
+        mask = mask.view(batch_size, num_nodes, 1).to(x.dtype)
+        x, s = x * mask, s * mask
+
+    out = torch.matmul(s.transpose(1, 2), x)
+
+    # Convert edge_index to dense for simplicity
+    adj = torch.zeros(batch_size, num_nodes, num_nodes, device=edge_index.device, dtype=x.dtype)
+    for b in range(batch_size):
+        adj[b, edge_index[0], edge_index[1]] = 1
+    out_adj_sparse = torch.matmul(torch.matmul(s.transpose(1, 2), adj), s)
+
+    # Convert out_adj_sparse to new edge_index format
+    new_edge_indices = []
+    offset = 0
+    for b in range(batch_size):
+        edge_index_b = torch.nonzero(out_adj_sparse[b], as_tuple=True)
+        # Adjust the edge_index for batched graphs
+        edge_index_b = (edge_index_b[0] + offset, edge_index_b[1] + offset)
+        new_edge_indices.append(edge_index_b)
+        offset += num_nodes
+
+    # Concatenate the new edge indices from each graph in the batch
+    new_edge_index = torch.cat([torch.stack(edge) for edge in new_edge_indices], dim=1)
     
-    def __init__(self, dataset, hidden, max_nodes, hidden_channels=64):
-        super(DiffPool, self).__init__()
-        
-        num_feats = dataset.num_features
-        num_classes = dataset.num_classes
+    # Computing the link prediction loss in sparse
+    s_product = torch.matmul(s, s.transpose(1, 2))
+    residual = adj - s_product
+    link_loss = (residual[edge_index[0], edge_index[1]] ** 2).sum()
+    if normalize is True:
+        link_loss = link_loss / edge_index.size(1)
+
+    ent_loss = (-s * torch.log(s + 1e-15)).sum(dim=-1).mean()
+
+    return out, new_edge_index, link_loss, ent_loss
+
+class DiffPoolNet(torch.nn.Module):
+    def __init__(self, num_feats, num_classes, max_nodes, hidden_channels=64):
+        super(DiffPoolNet, self).__init__()
+
+        self.max_nodes = max_nodes
 
         num_nodes = ceil(0.25 * max_nodes)
         self.gnn1_pool = GNN(num_feats, hidden_channels, num_nodes, add_loop=True)
@@ -94,30 +146,126 @@ class DiffPool(torch.nn.Module):
         self.lin1 = torch.nn.Linear(3 * hidden_channels, hidden_channels)
         self.lin2 = torch.nn.Linear(hidden_channels, num_classes)
 
-    def forward(self, data, mask=None):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
+    def forward(self, data, data_mask=None):
 
-        adj = edge_index_to_adjacency_matrix(edge_index)
-        
-        s = self.gnn1_pool(x, edge_index, mask)
-        x = self.gnn1_embed(x, edge_index, mask)
+        mask = self.create_mask_from_batch(data.batch, self.max_nodes)
+        x = self.reshape_x_from_batch(data.x, data.batch, self.max_nodes, data.num_features)        
+        adj = self.reshape_adj_from_batch(data.edge_index, data.batch, self.max_nodes, data_mask)
 
-        x, edge_index, l1, e1 = dense_diff_pool(x, adj, s, mask)
+        s = self.gnn1_pool(x, adj, mask)
+        x = self.gnn1_embed(x, adj, mask)
 
-        s = self.gnn2_pool(x, edge_index)
-        x = self.gnn2_embed(x, edge_index)
+        x, adj, l1, e1 = dense_diff_pool(x, adj, s, mask)
 
-        x, edge_index, l2, e2 = dense_diff_pool(x, adj, s)
+        s = self.gnn2_pool(x, adj)
+        x = self.gnn2_embed(x, adj)
 
-        x = self.gnn3_embed(x, edge_index)
+        x, adj, l2, e2 = dense_diff_pool(x, adj, s)
+
+        x = self.gnn3_embed(x, adj)
 
         self.graph_embedding = x.mean(dim=1)
 
         x = F.relu(self.lin1(self.graph_embedding))
         x = self.lin2(x)
 
-        return F.log_softmax(x, dim=-1), l1 + l2, e1 + e2      
+        return F.log_softmax(x, dim=-1)#, l1 + l2, e1 + e2
+
+    def create_mask_from_batch(self, batch, max_nodes):
+        """Create a mask tensor from batch data."""
+        batch_size = batch.max().item() + 1
+        mask = torch.zeros(batch_size, max_nodes, dtype=torch.bool, device=batch.device)
         
+        # For each graph in the batch, set the corresponding mask values to True
+        for i in range(batch_size):
+            num_nodes = (batch == i).sum().item()
+            mask[i, :num_nodes] = True
+
+        return mask
+
+    def reshape_x_from_batch(self, x, batch, max_nodes, num_features):
+        """Reshape the x tensor based on the batch data."""
+        batch_size = batch.max().item() + 1
+        new_x = torch.zeros(batch_size, max_nodes, num_features, device=x.device)
+        
+        # For each graph in the batch, set the respective node features
+        for i in range(batch_size):
+            nodes = x[batch == i]
+            num_nodes = nodes.size(0)
+            new_x[i, :num_nodes] = nodes
+
+        return new_x
+
+    def reshape_adj_from_batch(self, edge_index, batch, max_nodes, data_mask):
+        """Reshape the adjacency tensor based on the batch data."""
+        batch_size = batch.max().item() + 1
+        adj = torch.zeros(batch_size, max_nodes, max_nodes, device=edge_index.device)
+
+        edge_ptr = 0  # Pointer for the data_mask, since edge_index and data_mask are of the same length
+        for i in range(batch_size):
+            # Identify the range of nodes for this graph
+            start_node, end_node = batch.eq(i).nonzero(as_tuple=True)[0][[0, -1]]
+
+            # Get the edges related to this graph
+            mask = (edge_index[0] >= start_node) & (edge_index[0] <= end_node)
+            graph_edges = edge_index[:, mask] - start_node  # Normalize indices to 0-start
+
+            # Get the corresponding edge values
+            if data_mask is not None:
+                edge_values = data_mask[edge_ptr: edge_ptr + graph_edges.size(1)]
+            else:
+                edge_values = torch.ones(graph_edges.size(1), device=edge_index.device)
+            edge_ptr += graph_edges.size(1)  # Move the pointer by the number of edges for this graph
+
+            # Set the values in the adj tensor
+            adj[i, graph_edges[0], graph_edges[1]] = edge_values
+
+        return adj
+
+
+class GNN(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels,
+                 normalize=False, add_loop=False, lin=True):
+        super(GNN, self).__init__()
+
+        self.add_loop = add_loop
+
+        self.conv1 = DenseSAGEConv(in_channels, hidden_channels, normalize)
+        self.bn1 = torch.nn.BatchNorm1d(hidden_channels)
+        self.conv2 = DenseSAGEConv(hidden_channels, hidden_channels, normalize)
+        self.bn2 = torch.nn.BatchNorm1d(hidden_channels)
+        self.conv3 = DenseSAGEConv(hidden_channels, out_channels, normalize)
+        self.bn3 = torch.nn.BatchNorm1d(out_channels)
+
+        if lin is True:
+            self.lin = torch.nn.Linear(2 * hidden_channels + out_channels,
+                                       out_channels)
+        else:
+            self.lin = None
+
+    def bn(self, i, x):
+        batch_size, num_nodes, num_channels = x.size()
+
+        x = x.view(-1, num_channels)
+        x = getattr(self, 'bn{}'.format(i))(x)
+        x = x.view(batch_size, num_nodes, num_channels)
+        return x
+
+    def forward(self, x, adj, mask=None):
+        batch_size, num_nodes, in_channels = x.size()
+
+        x0 = x
+        x1 = self.bn(1, F.relu(self.conv1(x0, adj, mask)))
+        x2 = self.bn(2, F.relu(self.conv2(x1, adj, mask)))
+        x3 = self.bn(3, F.relu(self.conv3(x2, adj, mask)))
+
+        x = torch.cat([x1, x2, x3], dim=-1)
+
+        if self.lin is not None:
+            x = F.relu(self.lin(x))
+
+        return x
+
 class GCNmasker(torch.nn.Module):
     """GCN masker: a dynamic trainable masker"""
     def __init__(self, dataset, hidden, num_feat_layers=1, num_conv_layers=3,
@@ -364,48 +512,6 @@ class GATNet(torch.nn.Module):
 #         x = self.conv2(x, edge_index)
 #         return F.log_softmax(x, dim=-1)
 
-class GNN(torch.nn.Module):
-    def __init__(self, in_channels, hidden_channels, out_channels,
-                 normalize=False, add_loop=False, lin=True):
-        super(GNN, self).__init__()
-
-        self.add_loop = add_loop
-
-        self.conv1 = SAGEConv(in_channels, hidden_channels, normalize)
-        self.bn1 = torch.nn.BatchNorm1d(hidden_channels)
-        self.conv2 = SAGEConv(hidden_channels, hidden_channels, normalize)
-        self.bn2 = torch.nn.BatchNorm1d(hidden_channels)
-        self.conv3 = SAGEConv(hidden_channels, out_channels, normalize)
-        self.bn3 = torch.nn.BatchNorm1d(out_channels)
-
-        if lin is True:
-            self.lin = torch.nn.Linear(2 * hidden_channels + out_channels,
-                                       out_channels)
-        else:
-            self.lin = None
-
-    def bn(self, i, x):
-        batch_size, num_nodes, num_channels = x.size()
-
-        x = x.view(-1, num_channels)
-        x = getattr(self, 'bn{}'.format(i))(x)
-        x = x.view(batch_size, num_nodes, num_channels)
-        return x
-
-    def forward(self, x, edge_index, mask=None):
-        batch_size, num_nodes, in_channels = x.size()
-
-        x0 = x
-        x1 = self.bn(1, F.relu(self.conv1(x0, edge_index, mask)))
-        x2 = self.bn(2, F.relu(self.conv2(x1, edge_index, mask)))
-        x3 = self.bn(3, F.relu(self.conv3(x2, edge_index, mask)))
-
-        x = torch.cat([x1, x2, x3], dim=-1)
-
-        if self.lin is not None:
-            x = F.relu(self.lin(x))
-
-        return x
     
 def edge_index_to_adjacency_matrix(edge_index, num_nodes=None):
     '''
@@ -413,7 +519,7 @@ def edge_index_to_adjacency_matrix(edge_index, num_nodes=None):
     Args:
         edge_index (torch.Tensor): The edge index tensor of shape [2, num_edges].
         num_nodes (int, optional): The number of nodes in the graph. Determines the size of the adjacency matrix.
-                                   If None, it’s inferred from the edge_index.
+                                   If None, it's inferred from the edge_index.
     Returns:
         torch.Tensor: The adjacency matrix of shape [num_nodes, num_nodes].
     '''

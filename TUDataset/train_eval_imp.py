@@ -4,7 +4,7 @@ import torch
 import torch.nn.functional as F
 from torch import tensor
 from torch.optim import Adam
-from torch_geometric.data import DataLoader
+from torch_geometric.data import DataLoader, DenseDataLoader
 from utils import print_weights, k_fold
 import pruning
 import copy
